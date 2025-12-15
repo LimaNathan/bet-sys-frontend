@@ -25,11 +25,12 @@ export default function LoginPage() {
 
     try {
       const response = await authApi.login(email, password);
-      const { token, userId, role } = response.data;
+      const { token, userId, name, role } = response.data;
 
       setAuth(token, {
         id: userId,
         email,
+        name: name || email.split('@')[0],
         role,
         walletBalance: 0,
       });
@@ -70,7 +71,7 @@ export default function LoginPage() {
                 required
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 mb-5">
               <Label htmlFor="password">Senha</Label>
               <Input
                 id="password"

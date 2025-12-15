@@ -83,21 +83,21 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 md:space-y-8">
       {/* Hero Section */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 p-8 border border-border/50">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-32 translate-x-32" />
-        <div className="absolute bottom-0 left-0 w-48 h-48 bg-accent-foreground/10 rounded-full blur-3xl translate-y-24 -translate-x-24" />
+      <div className="relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-primary/20 via-primary/10 to-accent/20 p-5 md:p-8 border border-border/50">
+        <div className="absolute top-0 right-0 w-32 md:w-64 h-32 md:h-64 bg-primary/10 rounded-full blur-3xl -translate-y-16 md:-translate-y-32 translate-x-16 md:translate-x-32" />
+        <div className="absolute bottom-0 left-0 w-24 md:w-48 h-24 md:h-48 bg-accent-foreground/10 rounded-full blur-3xl translate-y-12 md:translate-y-24 -translate-x-12 md:-translate-x-24" />
 
         <div className="relative z-10">
           <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="h-5 w-5 text-accent-foreground" />
-            <span className="text-sm font-medium text-accent-foreground">Bem-vindo de volta!</span>
+            <Sparkles className="h-4 w-4 md:h-5 md:w-5 text-accent-foreground" />
+            <span className="text-xs md:text-sm font-medium text-accent-foreground">Bem-vindo de volta!</span>
           </div>
-          <h1 className="text-4xl font-bold mb-2">
+          <h1 className="text-2xl md:text-4xl font-bold mb-2">
             Pronto para apostar?
           </h1>
-          <p className="text-muted-foreground max-w-md mb-6">
+          <p className="text-sm md:text-base text-muted-foreground max-w-md mb-4 md:mb-6">
             Explore os eventos disponíveis e faça suas apostas. Boa sorte! 🍀
           </p>
 
@@ -121,15 +121,16 @@ export default function DashboardPage() {
       {/* Stats Grid */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {/* Balance Card */}
-        <Card className="glass border-primary/30 overflow-hidden group hover:border-primary/50 transition-all">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Card className="glass relative overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/20 border-primary/20 hover:border-primary/50">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute -top-12 -right-12 w-24 h-24 bg-primary/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <CardHeader className="relative flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Seu Saldo</CardTitle>
-            <div className="rounded-lg bg-primary/20 p-2">
+            <div className="rounded-lg bg-primary/10 dark:bg-primary/20 p-2 group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors">
               <Wallet className="h-4 w-4 text-primary" />
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative">
             <div className="text-3xl font-bold text-primary">{formattedBalance}</div>
             <Link href="/wallet">
               <p className="text-xs text-muted-foreground hover:text-primary transition-colors cursor-pointer mt-1">
@@ -140,15 +141,16 @@ export default function DashboardPage() {
         </Card>
 
         {/* Win Rate Card */}
-        <Card className="glass border-green-500/30 overflow-hidden group hover:border-green-500/50 transition-all">
-          <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Card className="glass relative overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-green-500/20 border-green-500/20 hover:border-green-500/50">
+          <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 via-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute -top-12 -right-12 w-24 h-24 bg-green-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <CardHeader className="relative flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Taxa de Vitória</CardTitle>
-            <div className="rounded-lg bg-green-500/20 p-2">
+            <div className="rounded-lg bg-green-500/10 dark:bg-green-500/20 p-2 group-hover:bg-green-500/20 dark:group-hover:bg-green-500/30 transition-colors">
               <TrendingUp className="h-4 w-4 text-green-500" />
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative">
             <div className="text-3xl font-bold text-green-500">{winRate}%</div>
             <p className="text-xs text-muted-foreground mt-1">
               {betStats.won} vitórias de {betStats.won + betStats.lost} finalizadas
@@ -157,15 +159,16 @@ export default function DashboardPage() {
         </Card>
 
         {/* Pending Bets Card */}
-        <Card className="glass border-yellow-500/30 overflow-hidden group hover:border-yellow-500/50 transition-all">
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Card className="glass relative overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-yellow-500/20 border-yellow-500/20 hover:border-yellow-500/50">
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-yellow-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute -top-12 -right-12 w-24 h-24 bg-yellow-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <CardHeader className="relative flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Apostas Ativas</CardTitle>
-            <div className="rounded-lg bg-yellow-500/20 p-2">
+            <div className="rounded-lg bg-yellow-500/10 dark:bg-yellow-500/20 p-2 group-hover:bg-yellow-500/20 dark:group-hover:bg-yellow-500/30 transition-colors">
               <Zap className="h-4 w-4 text-yellow-500" />
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="relative">
             <div className="text-3xl font-bold text-yellow-500">{betStats.pending}</div>
             <Link href="/bets">
               <p className="text-xs text-muted-foreground hover:text-yellow-500 transition-colors cursor-pointer mt-1">
@@ -176,16 +179,17 @@ export default function DashboardPage() {
         </Card>
 
         {/* Events Card */}
-        <Card className="glass border-accent-foreground/30 overflow-hidden group hover:border-accent-foreground/50 transition-all">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent-foreground/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Card className="glass relative overflow-hidden group transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-cyan-500/20 border-cyan-500/20 hover:border-cyan-500/50">
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute -top-12 -right-12 w-24 h-24 bg-cyan-500/20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <CardHeader className="relative flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Eventos Abertos</CardTitle>
-            <div className="rounded-lg bg-accent-foreground/20 p-2">
-              <Trophy className="h-4 w-4 text-accent-foreground" />
+            <div className="rounded-lg bg-cyan-500/10 dark:bg-cyan-500/20 p-2 group-hover:bg-cyan-500/20 dark:group-hover:bg-cyan-500/30 transition-colors">
+              <Trophy className="h-4 w-4 text-cyan-500" />
             </div>
           </CardHeader>
-          <CardContent>
-            <div className="text-3xl font-bold text-accent-foreground">{openEvents.length}</div>
+          <CardContent className="relative">
+            <div className="text-3xl font-bold text-cyan-500">{openEvents.length}</div>
             <p className="text-xs text-muted-foreground mt-1">
               Disponíveis para apostar
             </p>

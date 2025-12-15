@@ -39,8 +39,8 @@ api.interceptors.response.use(
 
 // Auth API
 export const authApi = {
-  register: (email: string, password: string) =>
-    api.post('/api/auth/register', { email, password }),
+  register: (name: string, email: string, password: string) =>
+    api.post('/api/auth/register', { name, email, password }),
   login: (email: string, password: string) =>
     api.post('/api/auth/login', { email, password }),
 };
@@ -61,8 +61,8 @@ export const eventsApi = {
 
 // Bets API
 export const betsApi = {
-  placeBet: (eventId: string, optionId: string, amount: number) =>
-    api.post('/api/bets', { eventId, optionId, amount }),
+  placeBet: (selections: Array<{ eventId: string; optionId: string }>, amount: number) =>
+    api.post('/api/bets', { selections, amount }),
   getMyBets: () => api.get('/api/bets'),
 };
 
@@ -88,3 +88,11 @@ export const adminApi = {
     api.post(`/api/admin/money-requests/${id}/reject`),
   getDashboardStatistics: () => api.get('/api/admin/dashboard/statistics'),
 };
+
+// Leaderboard API
+export const leaderboardApi = {
+  getWealth: () => api.get('/api/leaderboard?type=wealth'),
+  getProfit: () => api.get('/api/leaderboard?type=profit'),
+  getLoss: () => api.get('/api/leaderboard?type=loss'),
+};
+

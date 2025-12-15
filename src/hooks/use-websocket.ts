@@ -58,6 +58,28 @@ export function useWebSocket() {
           icon: '📩',
         });
         break;
+      case 'NEW_EVENT':
+        toast.success(notification.message, {
+          duration: 6000,
+          icon: '🏆',
+          style: {
+            background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+            color: 'white',
+            border: '2px solid #a78bfa',
+          },
+        });
+        break;
+      case 'BADGE_UNLOCKED':
+        toast.success(notification.message, {
+          duration: 8000,
+          icon: '🏆',
+          style: {
+            background: 'linear-gradient(135deg, #f59e0b, #d97706)',
+            color: 'white',
+            border: '2px solid #fbbf24',
+          },
+        });
+        break;
       default:
         toast.info(notification.message, {
           duration: 5000,
@@ -90,6 +112,13 @@ export function useWebSocket() {
         client.subscribe(`/topic/user/${user.id}/notifications`, (message) => {
           const notification = JSON.parse(message.body);
           console.log('📬 Received notification:', notification);
+          handleNotification(notification);
+        });
+
+        // Subscribe to global notifications (new events, etc.)
+        client.subscribe('/topic/global/notifications', (message) => {
+          const notification = JSON.parse(message.body);
+          console.log('🌐 Global notification:', notification);
           handleNotification(notification);
         });
 

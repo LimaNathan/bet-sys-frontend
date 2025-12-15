@@ -15,6 +15,7 @@ import { toast } from 'sonner';
 export default function RegisterPage() {
   const router = useRouter();
   const { setAuth } = useAuthStore();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -22,6 +23,11 @@ export default function RegisterPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (name.length < 3) {
+      toast.error('Apelido deve ter pelo menos 3 caracteres');
+      return;
+    }
 
     if (password !== confirmPassword) {
       toast.error('As senhas não coincidem');
@@ -36,12 +42,13 @@ export default function RegisterPage() {
     setLoading(true);
 
     try {
-      const response = await authApi.register(email, password);
-      const { token, userId, role } = response.data;
+      const response = await authApi.register(name, email, password);
+      const { token, userId, name: userName, role } = response.data;
 
       setAuth(token, {
         id: userId,
         email,
+        name: userName,
         role,
         walletBalance: 0,
       });
@@ -72,6 +79,17 @@ export default function RegisterPage() {
         <form onSubmit={handleSubmit}>
           <CardContent className="space-y-4">
             <div className="space-y-2">
+              <Label htmlFor="name">Apelido / Nome de Exibição</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Como quer ser chamado?"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
@@ -93,7 +111,7 @@ export default function RegisterPage() {
                 required
               />
             </div>
-            <div className="space-y-2">
+            <div className="space-y-2 mb-5">
               <Label htmlFor="confirmPassword">Confirmar Senha</Label>
               <Input
                 id="confirmPassword"
