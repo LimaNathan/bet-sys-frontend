@@ -20,6 +20,10 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 
+# Build args for Next.js public env vars (baked in at build time)
+ARG NEXT_PUBLIC_API_URL=http://api.bet.local
+ENV NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+
 # Build application
 RUN npm run build
 

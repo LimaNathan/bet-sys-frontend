@@ -309,7 +309,7 @@ export default function BetsPage() {
                         <div className="text-right">
                           <Badge variant={
                             bet.status === 'WON' ? 'default' :
-                            bet.status === 'LOST' ? 'destructive' : 'secondary'
+                              bet.status === 'LOST' ? 'destructive' : 'secondary'
                           }>
                             {statusTranslations[bet.status]}
                           </Badge>
@@ -406,20 +406,22 @@ export default function BetsPage() {
                     top: '50%',
                     left: '50%',
                     transform: 'translate(-50%, -50%) rotate(-25deg)',
+                    width: '60%',
+                    textAlign: 'center',
                     border: `4px solid ${selectedBet.status === 'WON' ? '#22c55e' : '#ef4444'}`,
                     borderRadius: '12px',
                     padding: '8px 32px',
                     color: selectedBet.status === 'WON' ? '#22c55e' : '#ef4444',
-                    fontSize: '28px',
+                    fontSize: '20px',
                     fontWeight: 'bold',
                     textTransform: 'uppercase',
                     letterSpacing: '4px',
-                    opacity: 0.9,
+                    opacity: 0.2,
                     textShadow: '0 0 10px rgba(0,0,0,0.5)',
                     pointerEvents: 'none',
                     zIndex: 10,
                   }}>
-                    {selectedBet.status === 'WON' ? '✓ GANHOU' : '✗ PERDEU'}
+                    {selectedBet.status === 'WON' ? '✓ GREEN' : '✗ RED'}
                   </div>
                 )}
 
