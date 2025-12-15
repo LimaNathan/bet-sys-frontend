@@ -2,6 +2,8 @@
 
 Interface web moderna para sistema de apostas com suporte a apostas múltiplas.
 
+> 🔗 **Backend**: [bet-sys-backend](https://github.com/LimaNathan/bet-sys-backend)
+
 ## 🚀 Tecnologias
 
 - **Next.js 16** (App Router)
