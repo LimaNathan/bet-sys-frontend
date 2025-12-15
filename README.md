@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cotic Bet - Frontend
 
-## Getting Started
+Interface web moderna para sistema de apostas com suporte a apostas múltiplas.
 
-First, run the development server:
+## 🚀 Tecnologias
+
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **Tailwind CSS** + shadcn/ui
+- **Zustand** para gerenciamento de estado
+- **WebSocket** para atualizações em tempo real
+
+## 📦 Funcionalidades
+
+### Apostas
+- ✅ **Bet Slip** flutuante para apostas simples/múltiplas
+- ✅ Clique nas odds para adicionar ao cupom
+- ✅ Cálculo automático de odds combinadas
+- ✅ Visualização de apostas múltiplas com expansão de legs
+- ✅ Compartilhamento de apostas com carimbo de resultado
+
+### Interface
+- ✅ Dark mode nativo
+- ✅ Design responsivo
+- ✅ Toasts e notificações em tempo real
+- ✅ Onboarding para novos usuários
+
+### Gamificação
+- ✅ Página de conquistas/badges
+- ✅ Leaderboards em tempo real
+- ✅ Bônus diário
+
+## 🏃 Como Executar
 
 ```bash
+# Instalar dependências
+npm install
+
+# Executar em desenvolvimento
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build de produção
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A aplicação estará disponível em `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Estrutura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                 # Páginas (App Router)
+│   ├── events/          # Lista e detalhe de eventos
+│   ├── bets/            # Histórico de apostas
+│   ├── achievements/    # Badges e conquistas
+│   ├── leaderboard/     # Rankings
+│   └── admin/           # Painel administrativo
+├── components/          # Componentes reutilizáveis
+│   ├── ui/              # shadcn/ui components
+│   ├── layout/          # Header, Sidebar
+│   └── bet-slip.tsx     # Cupom de apostas flutuante
+├── store/               # Zustand stores
+│   ├── auth-store.ts    # Autenticação
+│   ├── bet-slip-store.ts # Cupom de apostas
+│   └── events-store.ts  # Eventos
+├── hooks/               # Custom hooks
+└── lib/                 # Utilitários e API
+```
 
-## Learn More
+## 🎰 Fluxo de Aposta Múltipla
 
-To learn more about Next.js, take a look at the following resources:
+1. Navegue para `/events`
+2. Clique nas odds desejadas (de eventos diferentes)
+3. O cupom flutuante mostra suas seleções
+4. Insira o valor e confirme
+5. Visualize em `/bets` com expansão de cada leg
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⚙️ Variáveis de Ambiente
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8080
+```
 
-## Deploy on Vercel
+## 📱 Screenshots
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Eventos**: Lista com odds clicáveis
+- **Bet Slip**: Cupom flutuante no canto inferior direito
+- **Histórico**: Cards expansíveis para apostas múltiplas
+- **Compartilhar**: Card com carimbo diagonal de resultado
