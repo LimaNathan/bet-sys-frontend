@@ -395,8 +395,34 @@ export default function BetsPage() {
                   borderRadius: '16px',
                   padding: '24px',
                   color: 'white',
+                  position: 'relative',
+                  overflow: 'hidden',
                 }}
               >
+                {/* Diagonal Stamp Overlay */}
+                {selectedBet.status !== 'PENDING' && (
+                  <div style={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%) rotate(-25deg)',
+                    border: `4px solid ${selectedBet.status === 'WON' ? '#22c55e' : '#ef4444'}`,
+                    borderRadius: '12px',
+                    padding: '8px 32px',
+                    color: selectedBet.status === 'WON' ? '#22c55e' : '#ef4444',
+                    fontSize: '28px',
+                    fontWeight: 'bold',
+                    textTransform: 'uppercase',
+                    letterSpacing: '4px',
+                    opacity: 0.9,
+                    textShadow: '0 0 10px rgba(0,0,0,0.5)',
+                    pointerEvents: 'none',
+                    zIndex: 10,
+                  }}>
+                    {selectedBet.status === 'WON' ? '✓ GANHOU' : '✗ PERDEU'}
+                  </div>
+                )}
+
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
                   <Trophy style={{ width: '24px', height: '24px', color: '#a855f7' }} />
                   <span style={{ fontWeight: 'bold', fontSize: '18px' }}>Cotic Bet</span>
@@ -454,19 +480,6 @@ export default function BetsPage() {
                   <span style={{ fontWeight: 'bold', color: '#22c55e', fontSize: '18px' }}>
                     R$ {selectedBet.potentialPayout.toFixed(2)}
                   </span>
-                </div>
-
-                <div style={{
-                  marginTop: '16px',
-                  padding: '8px 16px',
-                  borderRadius: '8px',
-                  textAlign: 'center',
-                  fontWeight: 'bold',
-                  background: selectedBet.status === 'WON' ? '#22c55e' :
-                             selectedBet.status === 'LOST' ? '#ef4444' : '#eab308',
-                  color: selectedBet.status === 'PENDING' ? '#000' : '#fff'
-                }}>
-                  {statusTranslations[selectedBet.status]}
                 </div>
               </div>
 
