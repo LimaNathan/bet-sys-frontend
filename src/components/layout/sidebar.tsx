@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import { useAuthStore } from '@/store/auth-store';
 import {
@@ -104,6 +104,7 @@ export function MobileSidebar() {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="w-72 p-0 glass-strong">
+        <SheetTitle className="sr-only">Menu de Navegação</SheetTitle>
         <div className="flex h-16 items-center justify-between border-b border-border/50 px-4">
           <Link href={isAdmin ? '/admin' : '/'} className="flex items-center gap-2" onClick={() => setOpen(false)}>
             <div className="rounded-lg bg-primary/20 p-1.5">
